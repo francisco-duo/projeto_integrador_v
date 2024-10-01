@@ -1,30 +1,31 @@
 import { Router } from "express";
-import userControllers from "../controllers/user.controllers";
+import { PsychologistController, PatientController, AdminController } from "../controllers/user.controllers";
 
 const userRoute = Router();
-const userController = new userControllers.UserController();
+const psychologistController = new PsychologistController();
+const patientController = new PatientController();
+const adminController = new AdminController();
 
-// POST
 // User.Psychologists
-userRoute.get("/psychologists", userController.list);
-userRoute.get("/psychologists/:id", userController.list);
-userRoute.post("/psychologists", userController.save);
-userRoute.put("/psychologists/:id", userController.save);
-userRoute.put("/psychologists/:id", userController.save);
+userRoute.get("/psychologists", psychologistController.list);
+userRoute.get("/psychologists/:id", psychologistController.get);
+userRoute.post("/psychologists", psychologistController.save);
+userRoute.put("/psychologists/:id", psychologistController.update);
+userRoute.delete("/psychologists/:id", psychologistController.delete);
 
 // User.Patients
-userRoute.get("/patients", userController.list);
-userRoute.get("/patients/:id", userController.list);
-userRoute.post("/patients", userController.save);
-userRoute.put("/patients/:id", userController.save);
-userRoute.put("/patients/:id", userController.save);
+userRoute.get("/patients", patientController.list);
+userRoute.get("/patients/:id", patientController.get);
+userRoute.post("/patients", patientController.save);
+userRoute.put("/patients/:id", patientController.update);
+userRoute.delete("/patients/:id", patientController.delete);
 
 // User.admins
-userRoute.get("/admins", userController.list);
-userRoute.get("/admins/:id", userController.list);
-userRoute.post("/admins", userController.save);
-userRoute.put("/admins/:id", userController.save);
-userRoute.put("/admins/:id", userController.save);
+userRoute.get("/admins", adminController.list);
+userRoute.get("/admins/:id", adminController.get);
+userRoute.post("/admins", adminController.save);
+userRoute.put("/admins/:id", adminController.update);
+userRoute.delete("/admins/:id", adminController.delete);
 
 
 export default userRoute;

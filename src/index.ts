@@ -2,6 +2,8 @@ import express from "express";
 import userRoute from "./routes/user.routes";
 
 import AppDataSource from "./data-source";
+import agendaRoute from "./routes/agenda.routes";
+import anamneseRoute from "./routes/anamnese.routes";
 
 // init datasource
 AppDataSource.initialize()
@@ -18,6 +20,8 @@ app.use(express.json());
 
 // Routes
 app.use(userRoute);
+app.use(agendaRoute);
+app.use(anamneseRoute);
 
 // Run server
 app.listen(3000, () => {

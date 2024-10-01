@@ -28,8 +28,7 @@ export class User extends BaseEntity {
 
     // Definindo o papel do usuário
     @Column({
-        type: "enum",
-        enum: UserRole,
+        type: "text",
         default: UserRole.PATIENT
     })
     role!: UserRole;
