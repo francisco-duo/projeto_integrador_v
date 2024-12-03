@@ -26,12 +26,25 @@ export class User extends BaseEntity {
     @Column()
     phoneNumber!: string;
 
+    @Column({ nullable: true })
+    dateOfBirth!: Date;
+
     // Definindo o papel do usuário
     @Column({
         type: "text",
         default: UserRole.PATIENT
     })
+
     role!: UserRole;
+
+    // Getter to format bith date
+    get formattedBirthDate(): string {
+        const day = String(this.dateOfBirth.getDate()).padStart(2, "0");
+        const month = String(this.dateOfBirth.getMonth() + 1).padStart(2, "0");
+        const year = this.dateOfBirth.getUTCFullYear();
+
+        return `${day}/${month}/${year}`
+    }
 }
 
 @Entity()
@@ -54,9 +67,6 @@ export class Patient extends User {
 
     @Column({ type: 'text', nullable: true })
     treatmentPlan!: string; // Plano de tratamento atual
-
-    @Column({ nullable: true })
-    dateOfBirth!: Date;
 }
 
 @Entity()
